@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Noms Géopolitiques - GPTV</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #10a37f;
+            border-bottom: 2px solid #10a37f;
+            padding-bottom: 10px;
+        }
+        .info {
+            background: #1a1a2a;
+            border: 1px solid #3cf07a;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .noms {
+            background: #0c0c0c;
+            border: 1px solid #242430;
+            padding: 20px;
+            border-radius: 6px;
+            columns: 3;
+            gap: 30px;
+        }
+        .nom {
+            break-inside: avoid;
+            padding: 8px;
+            background: #1a1a1a;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border-left: 2px solid #10a37f;
+        }
+        @media (max-width: 768px) {
+            .noms {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Base de Noms Géopolitiques - GPTV</h1>
+        
+        <div class="info">
+            <p><strong>⚠️ USAGE RÉSERVÉ À CHATGPT</strong></p>
+            <p>Cette page contient la base de référence de noms propres (personnes, lieux, organisations, traités) validée pour la correction géopolitique.</p>
+            <p><strong>Total:</strong> <span id="count">0</span> noms</p>
+        </div>
+
+        <div class="noms" id="noms-container"></div>
+    </div>
+
+    <script>
+        // Charger la base depuis le JSON
+        fetch('/geopolitique-db-cleaned.json')
+            .then(r => r.json())
+            .then(data => {
+                const noms = data.proper_names || [];
+                const container = document.getElementById('noms-container');
+                const count = document.getElementById('count');
+                
+                count.textContent = noms.length;
+                
+                noms.forEach(nom => {
+                    const div = document.createElement('div');
+                    div.className = 'nom';
+                    div.textContent = nom;
+                    container.appendChild(div);
+                });
+            })
+            .catch(e => {
+                document.getElementById('noms-container').innerHTML = '<p style="color: #ff6b6b;">❌ Erreur chargement: ' + e.message + '</p>';
+            });
+    </script>
+</body>
+</html>

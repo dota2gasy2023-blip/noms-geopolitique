@@ -1,0 +1,13 @@
+{
+  "name": "noms-geopolitiques",
+  "version": "1.0.0",
+  "description": "Base de noms géopolitiques pour ChatGPT",
+  "scripts": {
+    "dev": "npx http-server . -p 3000",
+    "build": "echo 'No build needed'",
+    "start": "npx http-server . -p 3000"
+  },
+  "keywords": ["geopolitique", "noms", "chatgpt"],
+  "author": "GPTV",
+  "license": "MIT"
+}
