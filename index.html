@@ -67,7 +67,7 @@
 
     <script>
         // Charger la base depuis le JSON
-        fetch('/geopolitique-db-cleaned.json')
+        fetch('./geopolitique-db-cleaned.json')
             .then(r => r.json())
             .then(data => {
                 const noms = data.proper_names || [];
